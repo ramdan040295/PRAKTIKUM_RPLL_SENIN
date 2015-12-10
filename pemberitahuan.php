@@ -1,3 +1,9 @@
+ <?php
+include "model/_crud.mysqli.oop.php";
+$crud =new CRUD("localhost","root","","restoran");
+
+   ?>
+
  <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -72,7 +78,39 @@
 		  	 if(@$_GET['page'] == 'inmeja'){
 		  	 	echo "ini adalah informasi meja";
 		  	 }	elseif (@$_GET['page'] == 'inpesanan') {
-		  	 	echo "ini adalah pesanan";
+		  	 	?>
+		  	 	<div class="row">
+  <div class="col-md-8">.col-md-8</div>
+  <div class="col-md-4">
+  		  	 		<div class="table table-bordered">
+					  <table class="table">
+					    <tr>
+		       						<th>No</th>
+		       						<th>Tempat </th>
+		       						
+		       				</tr>
+		       					<?php
+		       					$no = 1;
+		       					$row = $crud->fetch('meja');
+		       					foreach ($row as $data) {
+		       						?>
+		       							<tr>
+		       								<td><?php echo $no++;  ?></td>
+		       								
+		       								<td><?php echo $data['tmpmeja'];  ?></td>
+		       								
+		       							</tr>
+		       						<?php
+		       					}
+		       					?>
+					  </table>
+
+  </div>
+</div>
+	
+					</div>
+
+		  	 	<?php
 		  	 }
 
 
