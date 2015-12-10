@@ -65,17 +65,8 @@ if(empty(@$_SESSION['username'])){
 		        <li><a href="menu.php" class="active">Menu Makanan</a>
 		        </li>
 		        <li><a href="logout.php" class="active"><b>Log Out</b></a></li>		
-		      	<li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pemberitahuan<span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li role="separator" class="divider"></li>
-		            <li><a href="#">Informasi Meja</a></li>
-		            <li role="separator" class="divider"></li>
-		            <li><a href="#">Pesanan</a></li>
-		            
-		            <li role="separator" class="divider"></li>
-		          </ul>
-		        </li>
+		      	<li><a href="pemberitahuan.php?page=inpesanan" class="active"><b>Pemberitahuan</b></a></li>		
+
 		       </ul>
 		    </div><!-- /.navbar-collapse -->
 

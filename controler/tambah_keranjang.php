@@ -13,5 +13,9 @@ $mmeja = @$_POST['meja'];
 
 	$data = array('meja'=>$mmeja,'nama'=>$nama,'noo'=>'','banyak'=>$banyak,'harga'=>$harga,'total'=>$jumlah);
 	$crud->insert('keranjang',$data);
+	
+	
+
+
 		header('location:../menu.php');
  ?>

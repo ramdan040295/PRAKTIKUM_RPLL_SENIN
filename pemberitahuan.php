@@ -1,7 +1,6 @@
  <?php
 include "model/_crud.mysqli.oop.php";
 $crud =new CRUD("localhost","root","","restoran");
-
    ?>
 
  <!DOCTYPE html>
@@ -47,17 +46,7 @@ $crud =new CRUD("localhost","root","","restoran");
 		        <li><a href="menu.php" class="active">Menu Makanan</a>
 		        </li>
 		        <li><a href="logout.php" class="active"><b>Log Out</b></a></li>		
-		      	<li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pemberitahuan<span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li role="separator" class="divider"></li>
-		            <li><a href="?page=inmeja">Informasi Meja</a></li>
-		            <li role="separator" class="divider"></li>
-		            <li><a href="?page=inpesanan">Pesanan</a></li>
-		            
-		            <li role="separator" class="divider"></li>
-		          </ul>
-		        </li>
+		      	<li><a href="?page=inpesanan" class="active">Pemberitahuan</a></li>
 		       </ul>
 		    </div><!-- /.navbar-collapse -->
 
@@ -71,16 +60,43 @@ $crud =new CRUD("localhost","root","","restoran");
 				   	<div class="page-header">
 		  				<h1><center>Sunda Resto<small> Admin form </small></center></h1>
 					</div>
-		  	 	</div>		
-		  	 	<div class="panel">
-		  	 		
-		  	 	<?php 
-		  	 if(@$_GET['page'] == 'inmeja'){
-		  	 	echo "ini adalah informasi meja";
-		  	 }	elseif (@$_GET['page'] == 'inpesanan') {
-		  	 	?>
+		  	 	</div>
 		  	 	<div class="row">
-  <div class="col-md-8">.col-md-8</div>
+  <div class="col-md-8">
+  
+  		  	 		<div class="table table-bordered">
+					  <table class="table">
+					    <tr>
+		       						
+		       						<th>Meja No. </th>
+		       						<th>Nama Makanan</th>
+		       						<th>Harga </th>
+		       						<th>Banyak </th>
+		       						<th>Total </th>
+
+		       						
+		       				</tr>
+		       					<?php
+		       					
+		       					$row = $crud->fetch('detail_penjualan');
+		       					foreach ($row as $data) {
+		       						?>
+		       							<tr>
+		       								
+		       								<td><?php echo $data['nomor_meja'];  ?></td>
+		       								<td><?php echo $data['nama'];  ?></td>
+		       								<td><?php echo $data['harga'];  ?></td>
+		       								<td><?php echo $data['banyak'];  ?></td>
+		       								<td><?php echo $data['total'];  ?></td>
+		       								
+		       							</tr>
+		       						<?php
+		       					}
+		       					?>
+					  </table>
+
+  </div>
+  </div>
   <div class="col-md-4">
   		  	 		<div class="table table-bordered">
 					  <table class="table">
@@ -96,8 +112,8 @@ $crud =new CRUD("localhost","root","","restoran");
 		       						?>
 		       							<tr>
 		       								<td><?php echo $no++;  ?></td>
-		       								
 		       								<td><?php echo $data['tmpmeja'];  ?></td>
+		       								<td><a href="?page=hapus&no=<?php echo $data['no'];  ?>"><span class="glyphicon glyphicon-refresh">Clear</span></a></td>
 		       								
 		       							</tr>
 		       						<?php
@@ -105,8 +121,27 @@ $crud =new CRUD("localhost","root","","restoran");
 		       					?>
 					  </table>
 
+
+		       			<?php
+
+								 	if(@$_GET['page'] == 'hapus'){
+								 		$d = @$_GET['no'];
+								 		$crud->delete("meja","no='$d'");
+								 		
+								 	}
+
+
+			       				  ?>
   </div>
-</div>
+</div>		
+		  	 	<div class="panel">
+		  	 		
+		  	 	<?php 
+if(@$_GET['page'] == 'inmeja'){
+		  	 	echo "ini adalah informasi meja";
+		  	 }	elseif (@$_GET['page'] == 'inpesanan') {
+		  	 	?>
+
 	
 					</div>
 

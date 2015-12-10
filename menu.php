@@ -51,7 +51,7 @@ $crud = new CRUD("localhost","root","","restoran");
 		       				$total_bil =0;
 		       					$no = 1;
 		       					$pkmeja;
-	       					$row = $crud	->fetch("keranjang", "meja = '$pkmeja'");
+	       					$row = $crud->fetch("keranjang", "meja = '$pkmeja'");
 		       					foreach ($row as $data) {
 		       						?>
 		       							<tr>
@@ -87,6 +87,7 @@ $crud = new CRUD("localhost","root","","restoran");
 								 		$id = @$_GET['no'];
 								 		
 								 		$crud->delete("keranjang","noo= '$id'");
+								 		
 								 	}
 
 
