@@ -22,6 +22,12 @@
 		$query = $this->connection->prepare($sql) or die ($this->connection->error);
 		$query->execute();
 		}
+	public function fetch_order($table, $by)
+		{
+			$sql = "SELECT * FROM $table order by $by";
+			$query = $this->connection->query($sql) or die ($this->connection->error);
+			return $query->fetch_all(MYSQLI_BOTH);
+		}
 
 	public function fetch($table, $where = null){
 		$sql = "SELECT * FROM $table";

@@ -1,4 +1,6 @@
 <?php
+$i=null;
+
 session_start();
 
 if(empty(@$_SESSION['username'])){
@@ -64,8 +66,9 @@ if(empty(@$_SESSION['username'])){
 		      <ul class="nav navbar-nav navbar-right">
 		        <li><a href="menu.php" class="active">Menu Makanan</a>
 		        </li>
-		        <li><a href="logout.php" class="active"><b>Log Out</b></a></li>		
-		      	<li><a href="pemberitahuan.php?page=inpesanan" class="active"><b>Pemberitahuan</b></a></li>		
+		        <li><a href="logout.php" class="active"><b>Log Out</b></a></li>	
+		        	
+		      	<li><a href="pemberitahuan.php" class="active"><b>Pemberitahuan</b><span class="badge"><?php echo $i;  ?></span></a></li>		
 
 		       </ul>
 		    </div><!-- /.navbar-collapse -->

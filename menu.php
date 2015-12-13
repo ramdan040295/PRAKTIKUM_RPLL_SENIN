@@ -8,6 +8,7 @@ if(@$_SESSION['nomor_meja']){
 include "model/_crud.mysqli.oop.php";
 $crud = new CRUD("localhost","root","","restoran");
 ?>
+
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
@@ -21,11 +22,15 @@ $crud = new CRUD("localhost","root","","restoran");
 	
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+		<style type="text/css">
+		.modal-content2{
+			background-color: #FFFFFF;
+			}</style>
 	</head>
 	<body class="is-loading-0 is-loading-1 is-loading-2">
 
 		<!-- Main -->
-			<div id="main">
+		<div id="main">
 				<!-- Header -->
 					<div class="panel panel-default">
 					  <div class="panel-heading">
@@ -38,7 +43,6 @@ $crud = new CRUD("localhost","root","","restoran");
 		       						<th><?php 
 		       						echo $pkmeja;
 		       						 ?></th>
-		       						
 		       						<th>Nama</th>
 		       						<th>Harga</th>
 		       						<th>Qty</th>
@@ -47,7 +51,6 @@ $crud = new CRUD("localhost","root","","restoran");
 		       					</tr>
 		       				</thead>	
 		       				<?php
-		       			
 		       				$total_bil =0;
 		       					$no = 1;
 		       					$pkmeja;
@@ -56,7 +59,6 @@ $crud = new CRUD("localhost","root","","restoran");
 		       						?>
 		       							<tr>
 		       								<td><?php echo $no++; ?></td>
-		       							
 		       								<td><?php echo $data['nama']; ?></td>
 		       								<td><?php echo $data['harga']; ?></td>
 		       								<td><?php echo $data['banyak']; ?></td>
@@ -65,10 +67,8 @@ $crud = new CRUD("localhost","root","","restoran");
 											href="?page=hapus&no=<?php echo $data['noo']; ?>">
 											<span class="glyphicon glyphicon-remove"></span></a>
 											</td>
-									       			
 		       							</tr>
 		       						<?php
-
 		       						$total_bil = $total_bil + $data['total'];
 		       						}
 		       					?>
@@ -87,15 +87,38 @@ $crud = new CRUD("localhost","root","","restoran");
 								 		$id = @$_GET['no'];
 								 		
 								 		$crud->delete("keranjang","noo= '$id'");
+								 		header('location:index.php');
 								 		
 								 	}
-
-
 			       				  ?>
-		       			<a href="#"><center><img src="img-icon/selesai.png" width="80px"></center></a>
-					  </div>
-					</div>
-			
+			       				  
+	<button  class="btn btn-default btn-lg btn-success" $ii data-toggle="modal" name="btnrengse" data-target=".bs-example-modal-sm2">Selesai</button>
+
+
+
+			 </div>
+		</div>
+			<div class="modal fade bs-example-modal-sm2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+						<div class="modal-dialog modal-sm">
+						 <?php echo $pkmeja; ?>
+						 <div class="modal-content">
+				<form method="POST" action="pembayaran.php">
+						 	
+						 <h3>
+						   <?php echo "TOTAL  Rp. $total_bil"; ?>
+						 </h3>
+						 <div class="col-sm-10">
+						 <input type="hidden" name="no_me" value="<?php echo $pkmeja;  ?>">
+						 <input type="hidden" name="harga" value="<?php echo $total_bil; ?>">
+						 <input type="text" name="pembayaran" placeholder="Masukan Nominal Yang Akan Anda Bayarkan" required>
+						 </div>
+						 <hr>
+						<button type="submit" class="btn btn-success" name="btnbayar">Bayar</button>
+					
+						<p>terimakasih telah mengunjungi dan berbelanja di Soenda Resto, tunggulah 5 menit pesanan anda akan segera datang</p>
+				</form>
+						 </div></div>
+					</div>	
 
 					</header>
 					<!--data makanan php -->
@@ -115,26 +138,24 @@ $crud = new CRUD("localhost","root","","restoran");
 		<p><?php echo $data['keterangan']; ?></p>
 		<a class="thumbnail" href="tampilan/img/<?php echo $data['gambar']; ?>" data-position="left center">
 		<img src="tampilan/img/<?php echo $data['gambar']; ?>" alt="" /></a>
-		 <input type="hidden" id="id-<?= $no ?>" value="<?= $data['no'] ?>">
+		<input type="hidden" id="id-<?= $no ?>" value="<?= $data['no'] ?>">
 		<td> <button onclick="setNo(<?= $data['no'] ?>)" type="button" class="btn btn-default btn-lg btn-success" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-edit" >Pilih</span>
 
 
 									  
 	</button></td><!-- Button trigger modal -->
 	</article>
-						<?php  
-						}
-						if(@$_GET['page'] == 'pilih')
+			<?php  
+			}
+			if(@$_GET['page'] == 'pilih')
 									{
-								 		$no = @$_GET['no'];
-								 		echo "$no";
+					 		$no = @$_GET['no'];
+					 		echo "$no";
 								 		?>
-
-								 	
-										<?php
+							<?php
 								 	}
-								 		
-						?>
+					 		
+			?>
 					</section>
 					</div>
 				<!-- Footer -->
@@ -143,12 +164,14 @@ $crud = new CRUD("localhost","root","","restoran");
 							<li>&copy; Gravitasi.</li><li>Design: <a href="#">muhamad ramdan</a></li>
 						</ul>
 					</footer>
-
+					
 			</div>
-			<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+			    	
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-sm">
  <?php echo $pkmeja; ?>
-    <div class="modal-content">
+    <div class="modal-content2">
       ..
     </div>
   </div>
@@ -176,7 +199,7 @@ $crud = new CRUD("localhost","root","","restoran");
      		data   : 'id='+idx,
      		success : function(msg){
      		//	alert(msg);
-     			$(".modal-content").html(msg);
+     			$(".modal-content2").html(msg);
      		}
 
      	});

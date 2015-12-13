@@ -1,7 +1,19 @@
- <?php
+
+<?php
+
+if(@$_SESSION['nomor_meja']){
+
+	header('location:menu.php');
+
+}else{
+
+  ?>
+
+
+<?php
 include "model/_crud.mysqli.oop.php";
 $crud =new CRUD("localhost","root","","restoran");
-   ?>
+?>
 
  <!DOCTYPE html>
 <html lang="en">
@@ -46,143 +58,195 @@ $crud =new CRUD("localhost","root","","restoran");
 		        <li><a href="menu.php" class="active">Menu Makanan</a>
 		        </li>
 		        <li><a href="logout.php" class="active"><b>Log Out</b></a></li>		
-		      	<li><a href="?page=inpesanan" class="active">Pemberitahuan</a></li>
+		      	<li><a href="?page=inpesanan" class="active"><span class="badge"></span>Pemberitahuan</a></li>
 		       </ul>
 		    </div><!-- /.navbar-collapse -->
 
 		  </div><!-- /.container-fluid -->
 		</nav>
 
-
-
-		<div class="container">
+			<div class="container">
 				<div class="panel panel-default">
 				   	<div class="page-header">
 		  				<h1><center>Sunda Resto<small> Admin form </small></center></h1>
 					</div>
 		  	 	</div>
+
 		  	 	<div class="row">
-  <div class="col-md-8">
-  
+  <div class="col-md-8"><h2><center><b>INFORMASI PESANAN</b></center></h2>
+  <hr>
   		  	 		<div class="table table-bordered">
 					  <table class="table">
-					    <tr>
-		       						
-		       						<th>Meja No. </th>
-		       						<th>Nama Makanan</th>
-		       						<th>Harga </th>
-		       						<th>Banyak </th>
-		       						<th>Total </th>
-
-		       						
-		       				</tr>
+					    <tr><b>					    	
+					    	<th>Meja No. </th>
+		       				<th>Uang Pembayaran</th>
+		       				<th>Jumlah Bill </th>
+		       				<th>Kembali </th>
+		       				<th>Waktu Pesanan </th>	
+		       				<th>Konfirmasi </th>		
+		       			</tr>
+					    	</b>
 		       					<?php
-		       					
-		       					$row = $crud->fetch('detail_penjualan');
+
+		       					$row = $crud->fetch_order('final_pesan', 'final_meja');
 		       					foreach ($row as $data) {
 		       						?>
 		       							<tr>
 		       								
-		       								<td><?php echo $data['nomor_meja'];  ?></td>
-		       								<td><?php echo $data['nama'];  ?></td>
-		       								<td><?php echo $data['harga'];  ?></td>
-		       								<td><?php echo $data['banyak'];  ?></td>
-		       								<td><?php echo $data['total'];  ?></td>
 		       								
+		       <td><b><?php echo $data['final_meja'];  ?></b></td>
+		       <td>Rp. <?php echo $data['final_bayar'];  ?></td>
+		       <td>Rp. <?php echo $data['final_bill'];  ?></td>
+		       <td><b><h3>Rp. <?php echo $data['final_kembali'];  ?></h3></b></td>
+		       <td><?php echo $data['final_waktu'];  ?></td>
+		       							
+		       <td><a href="?page=konfirmasi&nome=<?php echo $data['final_meja']; ?>"><span class="glyphicon glyphicon-tags"> Konfirmasi</span></a></td>
+		       
+		     
+
+									  
+	</button></td><!-- Button trigger modal -->
+
 		       							</tr>
 		       						<?php
+		       						
 		       					}
 		       					?>
 					  </table>
 
+
   </div>
   </div>
-  <div class="col-md-4">
+
+
+  <div class="col-md-4"><h2><center><b>INFORMASI MEJA</b></center></h2>
+  <hr>
   		  	 		<div class="table table-bordered">
 					  <table class="table">
 					    <tr>
-		       						<th>No</th>
-		       						<th>Tempat </th>
+		       						<th><center>No</th></center>
+		       						<th><center>Tempat</center> </th>
+		       						<th><center>Option</center></th>
 		       						
 		       				</tr>
 		       					<?php
+
 		       					$no = 1;
 		       					$row = $crud->fetch('meja');
 		       					foreach ($row as $data) {
 		       						?>
 		       							<tr>
-		       								<td><?php echo $no++;  ?></td>
-		       								<td><?php echo $data['tmpmeja'];  ?></td>
-		       								<td><a href="?page=hapus&no=<?php echo $data['no'];  ?>"><span class="glyphicon glyphicon-refresh">Clear</span></a></td>
+		       								<td><center><?php echo $no++;  ?></center></td>
+		       								<td><center><b><?php echo $data['tmpmeja'];  ?></b></center></td>
+		       								<td><center><a href="?page=hapus&no=<?php echo $data['no'];  ?>"><span class="glyphicon glyphicon-refresh">Clear</span></a></center></td>
 		       								
 		       							</tr>
 		       						<?php
 		       					}
 		       					?>
 					  </table>
-
-
 		       			<?php
-
-								 	if(@$_GET['page'] == 'hapus'){
-								 		$d = @$_GET['no'];
-								 		$crud->delete("meja","no='$d'");
-								 		
-								 	}
-
-
-			       				  ?>
+		       			 	if(@$_GET['page'] == 'hapus'){
+							$d = @$_GET['no'];
+							$crud->delete("meja","no='$d'");
+							
+							}
+						?>
   </div>
-</div>		
-		  	 	<div class="panel">
-		  	 		
-		  	 	<?php 
-if(@$_GET['page'] == 'inmeja'){
-		  	 	echo "ini adalah informasi meja";
-		  	 }	elseif (@$_GET['page'] == 'inpesanan') {
-		  	 	?>
+</div>	
 
-	
-					</div>
+ 	<div class="row">
+  <div class="col-md-8">
+  <hr>
+  <div class="panel">
+		  	 	 <?php 
+					  $ambil_meja = @$_GET['page'];
+					  $no_meja = @$_GET['nome'];
 
-		  	 	<?php
-		  	 }
+		if($ambil_meja == 'konfirmasi'){
 
+					  		?>
+<h2><center><b>KONFIRMASI PESANAN</b></center></h2>
+					<div class="table table-bordered">
+					  <table class="table">
+					    <tr>
+					    	<th class="warning">Meja No. </th>
+		       				<th class="warning">Nama Makanan</th>
+		       				<th class="warning">Harga </th>
+		       				<th class="warning">Banyak </th>
+		       				<th class="warning">Total </th>	
+		       					
+		       			</tr>
+		       					<?php
+		       					$bil = 0;
+		       					$row = $crud->fetch("detail_penjualan", "nomor_meja='$no_meja'");
+		       					foreach ($row as $data) {
+		       						?>
+		       							<tr>
+		       								
+		       								<td class="success"><?php echo $data['nomor_meja'];  ?></td>
+		       								<td class="success"><?php echo $data['nama'];  ?></td>
+		       								<td class="success"><?php echo $data['harga'];  ?></td>
+		       								<td class="success"><?php echo $data['banyak'];  ?></td>
+		       								<td class="success"><?php echo $data['total'];  ?></td>
+		       							</tr>
+		       						<?php
+		       						$bil = $bil + $data['total']; 
 
+		       					}
 
-		  	 	 ?>
+		       					$row = $crud->fetch("final_pesan", "final_meja='$no_meja'");
+		       					foreach ($row as $data) {
+		       						?>
+		       							<tr>
+		       								<td><?php $i=$data['final_bayar'];  ?></td>
+		       								
+		       							</tr>
+		       						<?php
+		       					}
+		       						
+		       					?>
+		       					<tr>
+								<td></td>
+		       					<td></td>
+		       					<td></td>
+		       					<td><b>Total Semua</b></td>
+		       					<td><b>Rp. <?php echo $bil; ?></b></td>
+		       					</tr>
+		       					<tr>
+		       					<td></td>
+		       					<td></td>
+		       					<td></td>
+		       					<td><b>Dibayar</b></td>
+		       					<td><b>Rp. <?php echo $i; ?></b></td>
+		       					</tr>
+					  </table>
+					  </div>
+					  <form method="POST" action="">
+					  	<input type="hidden" name="nomor_meja" value="<?php echo $data['nomor_meja']; ; ?>">
+					  	<input type="hidden" name="nama" value="<?php  echo $data['nama']; ?>">
+					  	<input type="hidden" name="harga" value="<?php  echo $data['harga']; ?>">
+					  	<input type="hidden" name="banyak" value="<?php  echo $data['banyak']; ?>">
+					  	<input type="hidden" name="total" value="<?php  echo $data['total']; ?>">
+					  	<hr>
+		       			<center><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>  Cetak</button></center>
+					  	</form>
+					  		<?php
+					  }
+					  ?>
+  
+		</div>  
 		  	 	</div>
-		</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		   
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="tampilan/js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="tampilan/js/bootstrap.min.js"></script>
+
    
   </body>
 </html>
+<?php 
+
+}
+ ?>

@@ -16,6 +16,7 @@ if($cek > 0){
 	
 	header('location:index.php');
 
+
 }else{
 		session_start();
 		@$_SESSION['nomor_meja'] = $nmor_meja;
