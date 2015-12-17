@@ -1,6 +1,6 @@
 <?php
 $i=null;
-
+$banyak_meja=0;
 session_start();
 
 if(empty(@$_SESSION['username'])){
@@ -14,6 +14,7 @@ if(empty(@$_SESSION['username'])){
  <!DOCTYPE html>
 <html lang="en">
   <head>
+  <meta http-equiv="reffresh" content="2">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no" >

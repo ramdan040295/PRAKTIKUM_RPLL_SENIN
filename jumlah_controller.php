@@ -9,7 +9,9 @@ $tot = $pembayaran - $harga;
 
 if($tot >= 0){
 echo "kembali :";
+
 echo $tot;
+
 }elseif ($tot < 0 ) {
 	echo "uang anda tidak mencukupi";
 	

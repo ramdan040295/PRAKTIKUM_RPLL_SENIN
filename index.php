@@ -21,6 +21,7 @@ if(@$_SESSION['username']){
 <!DOCTYPE HTML>
 <html> 
 	<head>
+	<meta http-equiv="reffresh" content="2">
 		<title>SOENDA RESTO</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -65,25 +66,17 @@ if(@$_SESSION['username']){
 					          <form class="form-horizontal " method="post" action="get_session_menu.php">
 					          
 					          <select class="form-control" name="mm" value="masukan No.Meja">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
-											<option>6</option>
-											<option>7</option>
-											<option>8</option>
-											<option>9</option>
-											<option>10</option>
-											<option>11</option>
-											<option>12</option>
-											<option>13</option>
-											<option>14</option>
-											<option>15</option>
-											<option>16</option>
-											<option>17</option>
-											<option>18</option>
-											<option>19</option>
+					          <?php 
+					          	$banyak_meja = 30;
+					          	for ($i=1; $i <$banyak_meja ; $i++) { 
+					          		?>
+					          			<option><?php echo $i; ?></option>
+					          		<?php
+					          	}
+
+					            ?>
+											
+											
 										</select>
 					          <div class="form-group">
 					     </div>

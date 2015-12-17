@@ -1,6 +1,7 @@
 
 <?php
 
+
 if(@$_SESSION['nomor_meja']){
 
 	header('location:menu.php');
@@ -11,6 +12,9 @@ if(@$_SESSION['nomor_meja']){
 
 
 <?php
+
+
+
 include "model/_crud.mysqli.oop.php";
 $crud =new CRUD("localhost","root","","restoran");
 ?>
@@ -18,6 +22,7 @@ $crud =new CRUD("localhost","root","","restoran");
  <!DOCTYPE html>
 <html lang="en">
   <head>
+  <meta http-equiv="refresh" content="5">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no" >
@@ -58,7 +63,7 @@ $crud =new CRUD("localhost","root","","restoran");
 		        <li><a href="menu.php" class="active">Menu Makanan</a>
 		        </li>
 		        <li><a href="logout.php" class="active"><b>Log Out</b></a></li>		
-		      	<li><a href="?page=inpesanan" class="active"><span class="badge"></span>Pemberitahuan</a></li>
+		      	<li><a href="pemberitahuan.php" class="active"><span class="badge"></span>Pemberitahuan</a></li>
 		       </ul>
 		    </div><!-- /.navbar-collapse -->
 
@@ -101,6 +106,7 @@ $crud =new CRUD("localhost","root","","restoran");
 		       <td><?php echo $data['final_waktu'];  ?></td>
 		       							
 		       <td><a href="?page=konfirmasi&nome=<?php echo $data['final_meja']; ?>"><span class="glyphicon glyphicon-tags"> Konfirmasi</span></a></td>
+		       <td><a href="?page=hapuss&nome=<?php echo $data['final_meja']; ?>"><span class="glyphicon glyphicon-tags"> Hapus</span></a></td>
 		       
 		     
 
@@ -149,7 +155,7 @@ $crud =new CRUD("localhost","root","","restoran");
 		       			 	if(@$_GET['page'] == 'hapus'){
 							$d = @$_GET['no'];
 							$crud->delete("meja","no='$d'");
-							
+							header('location:pemberitahuan.php');
 							}
 						?>
   </div>
@@ -204,7 +210,7 @@ $crud =new CRUD("localhost","root","","restoran");
 		       							</tr>
 		       						<?php
 		       					}
-		       						
+		       						$kem =  $i - $bil;
 		       					?>
 		       					<tr>
 								<td></td>
@@ -220,21 +226,32 @@ $crud =new CRUD("localhost","root","","restoran");
 		       					<td><b>Dibayar</b></td>
 		       					<td><b>Rp. <?php echo $i; ?></b></td>
 		       					</tr>
+		       					<tr>
+		       					<td></td>
+		       					<td></td>
+		       					<td></td>
+		       					<td><b>Kembali</b></td>
+		       					<td><b>Rp. <?php echo $kem; ?></b></td>
+		       					</tr>
 					  </table>
 					  </div>
-					  <form method="POST" action="">
-					  	<input type="hidden" name="nomor_meja" value="<?php echo $data['nomor_meja']; ; ?>">
-					  	<input type="hidden" name="nama" value="<?php  echo $data['nama']; ?>">
-					  	<input type="hidden" name="harga" value="<?php  echo $data['harga']; ?>">
-					  	<input type="hidden" name="banyak" value="<?php  echo $data['banyak']; ?>">
-					  	<input type="hidden" name="total" value="<?php  echo $data['total']; ?>">
+					  <form method="POST" action="laporan/struk.php">
+					  	<input type="hidden" name="dibayar" value="<?php echo $i; ?>">
+					  	<input type="hidden" name="meja" value="<?php echo $no_meja; ?>">
+					  	<input type="hidden" name="total" value="<?php echo $bil; ?>">
+					  	<input type="hidden" name="kembali" value="<?php echo $kem; ?>">
 					  	<hr>
-		       			<center><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>  Cetak</button></center>
+		       			<center><button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-print"></span>Cetak</button></center>
 					  	</form>
 					  		<?php
+					  }elseif ($ambil_meja == 'hapuss') {
+
+					  	$crud->delete("final_pesan","final_meja = '$no_meja'");
+					  	$crud->delete("keranjang","meja= '$no_meja'");
+					  	
 					  }
 					  ?>
-  
+					 
 		</div>  
 		  	 	</div>
 

@@ -12,6 +12,7 @@ $crud = new CRUD("localhost","root","","restoran");
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
+	<meta http-equiv="refresh" content="60">
 		<title>Restoran emak</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -115,7 +116,7 @@ $crud = new CRUD("localhost","root","","restoran");
 						 <hr>
 						<button type="submit" class="btn btn-success" name="btnbayar">Bayar</button>
 					
-						<p>terimakasih telah mengunjungi dan berbelanja di Soenda Resto, tunggulah 5 menit pesanan anda akan segera datang</p>
+						<p>terimakasih telah mengunjungi dan berbelanja di Soenda Resto, tunggulah 5 menit setelah menekan tombol Bayar dibawah!  pesanan anda akan segera datang</p>
 				</form>
 						 </div></div>
 					</div>	

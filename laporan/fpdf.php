@@ -71,7 +71,7 @@ protected $PDFVersion;         // PDF version number
 *                               Public methods                                 *
 *******************************************************************************/
 
-function __construct($orientation='P', $unit='mm', $size='A4')
+function __construct($orientation='P', $unit='mm', $size='a12')
 {
 	// Some checks
 	$this->_dochecks();
@@ -127,7 +127,7 @@ function __construct($orientation='P', $unit='mm', $size='A4')
 		$this->Error('Incorrect unit: '.$unit);
 	// Page sizes
 	$this->StdPageSizes = array('a3'=>array(841.89,1190.55), 'a4'=>array(595.28,841.89), 'a5'=>array(420.94,595.28),
-		'letter'=>array(612,792), 'legal'=>array(612,1008));
+		'letter'=>array(612,792), 'legal'=>array(612,1008), 'a12'=>array(200.10,400.40));
 	$size = $this->_getpagesize($size);
 	$this->DefPageSize = $size;
 	$this->CurPageSize = $size;
@@ -386,8 +386,8 @@ function SetDrawColor($r, $g=null, $b=null)
 
 function SetFillColor($r, $g=null, $b=null)
 {
-	// Set color for all filling operations
 	if(($r==0 && $g==0 && $b==0) || $g===null)
+	// Set color for all filling operations
 		$this->FillColor = sprintf('%.3F g',$r/255);
 	else
 		$this->FillColor = sprintf('%.3F %.3F %.3F rg',$r/255,$g/255,$b/255);
