@@ -44,7 +44,7 @@ if(@$_SESSION['username']){
 							<ul>
 								
 								<li><a href="#" class="icon fa-twitter" data-toggle="modal" data-target=".bs-example-modal-sm"><img src="awal/img/menu.png" height="50px"></a></li>
-								<li><a href="#" class="icon fa-twitter"><img src="awal/img/twt.png" height="50px"></a></li>
+								<li><a href="http://192.168.173.254:8080/" class="icon fa-twitter"><img src="awal/img/twt.png" height="50px"></a></li>
 								<li><a href="#" class="icon fa-twitter"><img src="img-icon/facebook-icon.png" height="50px"></a></li>
 								<li><a href="#" class="icon fa-twitter" data-toggle="modal" data-target="#myModal"><img src="awal/img/login2.png" height="50px"></a></li>
 							</ul>

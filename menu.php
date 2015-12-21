@@ -114,7 +114,19 @@ $crud = new CRUD("localhost","root","","restoran");
 						 <div class="col-sm-10">
 						 <input type="hidden" name="no_me" value="<?php echo $pkmeja;  ?>">
 						 <input type="hidden" name="harga" value="<?php echo $total_bil; ?>">
-						 <input type="text" name="pembayaran" placeholder="Masukan Nominal Yang Akan Anda Bayarkan" required>
+						    <select class="form-control" name="pembayaran" value="masukan No.Meja">
+					          <?php 
+					          	$banyak_meja = 30;
+					          	for ($i=$total_bil; $i < $total_bil + 50000 ; $i+=10000) { 
+					          		?>
+					          			<option><?php echo $i; ?></option>
+					          		<?php
+					          	}
+
+					            ?>
+											
+											
+										</select>
 						 </div>
 						 <hr>
 						<button type="submit" class="btn btn-success" name="btnbayar">Bayar</button>

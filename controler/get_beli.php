@@ -32,29 +32,20 @@ $data = $crud -> fetch ("makanan", "no = '$id'");
 										<input type="hidden" name="banyak" class="form-control">
 										<input type="hidden" name="meja" class="form-control" value="<?= $pkmeja ?>">
 										<input type="hidden" name="harga" value="<?= $data[0]['harga']; ?>">
+										<input type="hidden" name="stok" value="<?=$n = $data[0]['stok']; ?>">
 										<input type="hidden" name="id" value="<?= $data[0]['no']; ?>" name="id">
-										<br>Banyak
-										<?php echo $pkmeja;  ?>
+										<br>Banyak Porsi
+										
 										<select class="form-control" name="banyak">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
-											<option>6</option>
-											<option>7</option>
-											<option>8</option>
-											<option>9</option>
-											<option>10</option>
-											<option>11</option>
-											<option>12</option>
-											<option>13</option>
-											<option>14</option>
-											<option>15</option>
-											<option>16</option>
-											<option>17</option>
-											<option>18</option>
-											<option>19</option>
+										 <?php 
+					          	$banyak_meja = 30;
+					          	for ($i=0; $i <$n ; $i++) { 
+					          		?>
+					          			<option><?php echo $i; ?></option>
+					          		<?php
+					          	}
+
+					            ?>
 										</select>
 										<br>
 										<button type="submit" class="btn btn-success" name="btnedit">Beli</button>

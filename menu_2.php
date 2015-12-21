@@ -12,7 +12,7 @@ $crud = new CRUD("localhost","root","","restoran");
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-	<meta http-equiv="refresh" content="60">
+	
 		<title>Restoran emak</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,7 +33,16 @@ $crud = new CRUD("localhost","root","","restoran");
 		<!-- Main -->
 		<div id="main">
 				<!-- Header -->
+				
 					<div class="panel panel-default">
+					<nav class="navbar navbar-inverse">
+  
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="menu.php">Pesan Makanan Baru</a></li>
+         
+          </ul>
+        
+</nav>
 					  <div class="panel-heading">
 					  	<form action="logout_meja.php" method="POST">
 					  		<input type="hidden" name="inimeja" value="<?php echo "$pkmeja"; ?>">
@@ -67,9 +76,8 @@ $crud = new CRUD("localhost","root","","restoran");
 		       								<td><?php echo $data['harga']; ?></td>
 		       								<td><?php echo $data['banyak']; ?></td>
 		       								<td><?php echo $data['total']; ?></td>
-											<td><a onclick="return confirm('apakah yakin data ini akan di hapus')" 
-											href="?page=hapus&no=<?php echo $data['noo']; ?>">
-											<span class="glyphicon glyphicon-remove"></span></a>
+											<td>
+											<span class=" glyphicon glyphicon-ok"></span>
 											</td>
 		       							</tr>
 		       						<?php
@@ -80,6 +88,10 @@ $crud = new CRUD("localhost","root","","restoran");
 		       			</table>
 		       			<table>
 		       				<tr>
+		       					<td></td>
+		       					<td></td>
+		       					<td><b><h4>Tunggulah Beberapa Menit...Makanan Sedang Diantarkan</h4></b></td>
+		       				</tr><tr>
 		       					<td></td>
 		       					<td></td>
 		       					<td><b><h2> Rp.  <?php echo $total_bil; ?></h2></b></td>
@@ -96,10 +108,7 @@ $crud = new CRUD("localhost","root","","restoran");
 								 	}
 			       				  ?>
 			       				  
-	<button  class="btn btn-default btn-lg btn-success" $ii data-toggle="modal" name="btnrengse" data-target=".bs-example-modal-sm2">Selesai</button>
-
-
-
+	
 			 </div>
 		</div>
 			<div class="modal fade bs-example-modal-sm2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -143,11 +152,7 @@ $crud = new CRUD("localhost","root","","restoran");
 		<a class="thumbnail" href="tampilan/img/<?php echo $data['gambar']; ?>" data-position="left center">
 		<img src="tampilan/img/<?php echo $data['gambar']; ?>" alt="" /></a>
 		<input type="hidden" id="id-<?= $no ?>" value="<?= $data['no'] ?>">
-		<td> <button onclick="setNo(<?= $data['no'] ?>)" type="button" class="btn btn-default btn-lg btn-success" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-edit" >Pilih</span>
-
-
-									  
-	</button></td><!-- Button trigger modal -->
+		
 	</article>
 			<?php  
 			}
@@ -171,15 +176,6 @@ $crud = new CRUD("localhost","root","","restoran");
 					
 			</div>
 			    	
-
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
- <?php echo $pkmeja; ?>
-    <div class="modal-content2">
-      ..
-    </div>
-  </div>
-</div>	
 				
 
 		<!-- Scripts -->
@@ -192,23 +188,7 @@ $crud = new CRUD("localhost","root","","restoran");
     <script src="tampilan/js/bootstrap.min.js"></script>
      <script src="tampilan/js/jquery.min.js"></script>
 
-     <script type="text/javascript">
-     function setNo (id) {
-     	var idx= id;
-     	//alert(id);
-     	//$("#myModalLabel").html(id);
-     	$.ajax({
-     		type : 'POST',
-     		url : 'controler/get_beli.php',
-     		data   : 'id='+idx,
-     		success : function(msg){
-     		//	alert(msg);
-     			$(".modal-content2").html(msg);
-     		}
-
-     	});
-     }
-    </script>
+     
 	</body>
 </html>
 

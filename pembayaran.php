@@ -12,6 +12,6 @@ $db = mysql_select_db("restoran");
 $sql = mysql_query("INSERT INTO final_pesan VALUES('',$p_nome,$p_nominal,$p_harga,$p_kembali,NOW());");
 $sql = mysql_query("INSERT INTO laporan VALUES('',$p_nome,$p_nominal,$p_harga,$p_kembali,NOW());");
 
-header('location:index.php')
+header('location:menu_2.php')
 ?>
 

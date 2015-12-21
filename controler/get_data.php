@@ -27,6 +27,8 @@ $data = $crud -> fetch ("makanan", "no = '$id'");
 										<br>
 										<label for="exampleInputEmail2">Harga Makanan</label>
 										<input type="text" name="harga" class="form-control" value="<?= $data[0]['harga']; ?>" required >
+										<label for="exampleInputEmail2">Stok Makanan</label>
+										<input type="text" name="stok" class="form-control" value="<?= $data[0]['stok']; ?>" required >
 										<input type="hidden" name="id" value="<?= $data[0]['no']; ?>" name="id">
 										<br>
 										 <div class="form-group">

@@ -113,6 +113,7 @@ if(empty(@$_SESSION['username'])){
 									<th>Nama Makanan.</th>
 									<th>Gambar Makanan</th>
 									<th>Harga Makanan.</th>
+									<th>Banyak.</th>
 									<th>Keterangan.</th>
 								</tr>
 							</thead>
@@ -128,6 +129,7 @@ if(empty(@$_SESSION['username'])){
 									       		  	<td><?php echo $data['nama'];?></td>
 									       		  	<td><img src="tampilan/img/<?php echo $data['gambar']; ?> " class="img-circle" alt="Responsive image" width="150px"></td>
 									       		  	<td><?php echo $data['harga'];?></td>
+									       		  	<td><?php echo $data['stok'];?></td>
 									       		  	<td><?php echo $data['keterangan'];?></td>
 									       		  	<td><a onclick="return confirm('apakah yakin data ini akan di hapus')" href="?page=hapus&no=<?php echo $data['no']; ?>"><span class="glyphicon glyphicon-remove">hapus</span></a></td>
 									       			<!-- Button trigger modal -->

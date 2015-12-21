@@ -2,6 +2,7 @@
 include "model/_crud.mysqli.oop.php";
 $crud =new CRUD("localhost","root","","restoran");
 
+$stok = @$_POST['stok'];
 $keterangan = @$_POST['keterangan'];
 $no = @$_POST['id'];
 $nama = @$_POST['nama'];
@@ -12,7 +13,7 @@ $nama_gambar = @$_FILES['gambar']['name'];
 $pindah = move_uploaded_file($gambar, $target.$nama_gambar);
 
 if($pindah){
-		$data = array('nama' => $nama,'gambar' => $nama_gambar, 'harga'=> $harga,'keterangan'=>$keterangan);
+		$data = array('nama' => $nama,'gambar' => $nama_gambar, 'harga'=> $harga,'stok'=> $stok,'keterangan'=>$keterangan);
 		$crud->update("makanan", $data, "no = '$no'");
 		header('location:admin.php');
 	}else{
